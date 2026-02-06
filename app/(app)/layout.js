@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, User } from "lucide-react";
+import { FileText, Home } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 
 export default function AppLayout({ children }) {
@@ -20,11 +20,11 @@ export default function AppLayout({ children }) {
             Home
           </Link>
           <Link
-            href="/about"
+            href="/mahsupfisi"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition hover:bg-slate-100 dark:hover:bg-slate-900"
           >
-            <User className="h-4 w-4" />
-            About
+            <FileText className="h-4 w-4" />
+            Mahsup Fişi
           </Link>
         </nav>
 

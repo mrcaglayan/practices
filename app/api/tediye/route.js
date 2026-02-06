@@ -37,3 +37,61 @@ export async function POST(request) {
     );
   }
 }
+
+export async function GET(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const userId = Number(searchParams.get("userId"));
+
+    if (!Number.isInteger(userId)) {
+      return NextResponse.json(
+        { error: "userId is required." },
+        { status: 400 }
+      );
+    }
+
+    const items = await prisma.tediyeInput.findMany({
+      where: { userId },
+      select: {
+        id: true,
+        name: true,
+        amount: true,
+      },
+      orderBy: { id: "desc" },
+    });
+
+    return NextResponse.json({ ok: true, items });
+  } catch (error) {
+    console.error("Tediye input list error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong. Please try again." },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = Number(searchParams.get("id"));
+
+    if (!Number.isInteger(id)) {
+      return NextResponse.json(
+        { error: "id is required." },
+        { status: 400 }
+      );
+    }
+
+    await prisma.tediyeInput.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("Tediye input delete error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong. Please try again." },
+      { status: 500 }
+    );
+  }
+}

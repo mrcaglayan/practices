@@ -21,3 +21,13 @@ CREATE TABLE IF NOT EXISTS `MahsupItem` (
   KEY `MahsupItem_userId_idx` (`userId`),
   CONSTRAINT `MahsupItem_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS `TediyeInput` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(191) NOT NULL,
+  `amount` DOUBLE NOT NULL,
+  `userId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `TediyeInput_userId_idx` (`userId`),
+  CONSTRAINT `TediyeInput_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+);

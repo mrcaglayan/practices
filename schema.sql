@@ -11,3 +11,13 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `User_email_key` (`email`)
 );
+
+CREATE TABLE IF NOT EXISTS `MahsupItem` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(191) NOT NULL,
+  `amount` DOUBLE NOT NULL,
+  `userId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `MahsupItem_userId_idx` (`userId`),
+  CONSTRAINT `MahsupItem_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+);

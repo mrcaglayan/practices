@@ -14,4 +14,13 @@ model User {
   password       String
   createdAt      DateTime @default(now())
   confirmedEmail Boolean  @default(false)
+  mahsupItems    MahsupItem[]
+}
+
+model MahsupItem {
+  id     Int    @id @default(autoincrement())
+  name   String
+  amount Float
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
 }
